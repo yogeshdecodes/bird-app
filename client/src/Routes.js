@@ -7,9 +7,10 @@ import LoginScreen from './screens/LoginScreen';
 import Home from './screens/HomeScreen';
 import Notification from './screens/NotificationScreen';
 import NotFound from './screens/NotFound';
+import PostScreen from './screens/PostScreen';
 import { ToastContainer } from 'react-toastify';
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <Router>
       <ToastContainer position="bottom-right" hideProgressBar />
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <Route path="/register" component={RegisterScreen} />
         <PrivateRoute path="/home" component={Home} />
         <PrivateRoute path="/notifications" component={Notification} />
+        <PrivateRoute path={`/post/:postId`} component={PostScreen} />
         <Route component={NotFound} />
       </Switch>
     </Router>

@@ -16,11 +16,13 @@ export default function PostCard({ post, largeFont = false }) {
   const [show, setShow] = useState(false);
   const [deleteShow, setDeleteShow] = useState(false);
   const [content, setContent] = useState('');
+  const [hideDeletePost, setHideDeletePost] = useState(false);
 
   const { user, token } = isAuthenticated();
   const history = useHistory();
 
   let largeFontClass = largeFont ? 'largeFont' : '';
+  let hideDeletePostClass = hideDeletePost ? 'hideDeletePost' : '';
 
   const isRetweet = post?.retweetData !== undefined;
   const retweetedBy = isRetweet ? post.postedBy.username : null;
@@ -98,9 +100,10 @@ export default function PostCard({ post, largeFont = false }) {
     event.stopPropagation();
     deletePost(post._id, user._id, token)
       .then((status) => {
-        if (status != 202) alert('Could not delete post');
+        if (status !== 202) alert('Could not delete post');
         handleDeleteClose();
-        window.location.reload();
+        setHideDeletePost(true);
+        // window.location.reload();
       })
       .catch((error) => console.log(error));
   };
@@ -245,7 +248,10 @@ export default function PostCard({ post, largeFont = false }) {
     <>
       {show && replyModal()}
       {deleteShow && deleteModal()}
-      <div onClick={redirectPostpage} className={`${largeFontClass} post`}>
+      <div
+        onClick={redirectPostpage}
+        className={`${largeFontClass} ${hideDeletePostClass} post`}
+      >
         {isRetweet ? (
           <div className="retweetContainer">
             <span>
@@ -271,7 +277,7 @@ export default function PostCard({ post, largeFont = false }) {
                 {displayName}
               </a>
               <span className="username">@{post?.postedBy.username}</span>
-              <span className="date">{timestamp}</span>
+              <span className="date">· {timestamp}</span>
 
               {post.postedBy._id === user._id && (
                 <Dropdown>

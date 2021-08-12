@@ -5,38 +5,62 @@ const Layout = ({ title, children }) => {
   return (
     <div className="wrapper">
       <div className="row">
-        <nav className="col-2 col-lg-3">
+        <nav className="bootomTab d-none d-sm-flex col-sm-2 col-lg-3">
           <div className="logo">
             <Link className="blue " to="/home">
               <img src="/images/twitter.png" alt="logo" />
             </Link>
           </div>
-          <NavLink activeStyle={{ color: '#1fa2f1' }} to="/home">
+          <NavLink
+            className="bot-nav-item"
+            activeStyle={{ color: '#1fa2f1' }}
+            to="/home"
+          >
             <i className="fas fa-home"></i>
           </NavLink>
-          <NavLink activeStyle={{ color: '#1fa2f1' }} to="/search">
+          <NavLink
+            className="bot-nav-item"
+            activeStyle={{ color: '#1fa2f1' }}
+            to="/search"
+          >
             <i className="fas fa-search"></i>
           </NavLink>
-          <NavLink activeStyle={{ color: '#1fa2f1' }} to="/notifications">
+          <NavLink
+            className="bot-nav-item"
+            activeStyle={{ color: '#1fa2f1' }}
+            to="/notifications"
+          >
             <i className="fas fa-bell"></i>
           </NavLink>
-          <NavLink activeStyle={{ color: '#1fa2f1' }} to="/messages">
+          <NavLink
+            className="bot-nav-item"
+            activeStyle={{ color: '#1fa2f1' }}
+            to="/messages"
+          >
             <i className="fas fa-envelope"></i>
           </NavLink>
-          <NavLink activeStyle={{ color: '#1fa2f1' }} to="/profile">
+          <NavLink
+            className="bot-nav-item"
+            activeStyle={{ color: '#1fa2f1' }}
+            to="/profile"
+          >
             <i className="fas fa-user"></i>
           </NavLink>
-          <NavLink activeStyle={{ color: '#1fa2f1' }} to="/signout">
+          <NavLink
+            activeStyle={{ color: '#1fa2f1' }}
+            to="/signout"
+            className="mobileHide"
+          >
             <i className="fas fa-sign-out-alt"></i>
           </NavLink>
         </nav>
-        <div className="mainSectionContainers col-10 col-md-8 col-lg-5">
+        <div className="mainSectionContainers col-12 col-sm-8 col-lg-5 ml-2">
           <div className="titleContainer">
             <h1>{title}</h1>
           </div>
           {children}
         </div>
-        <div className=" d-none d-lg-block col-4 col-lg-4 mt-5">
+        <div className=" d-none d-lg-flex col-md-2 col-lg-4 mt-5">
           {/* Follow suggestions */}
           <aside className="followSuggestion">
             <div className="followSuggestionHeader">

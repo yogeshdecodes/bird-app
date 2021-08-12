@@ -7,7 +7,8 @@ import PostCard from './PostCard';
 export default function CreateNewPost() {
   const [content, setContent] = useState('');
   const [isNewPostCreated, setIsNewPostCreated] = useState(false);
-  const [responseData, setResponseData] = useState();
+  // const [responseData, setResponseData] = useState();
+  const [responseAllData, setResponseAllData] = useState([]);
   const { user, token } = isAuthenticated();
 
   const handleChange = (event) => {
@@ -22,8 +23,10 @@ export default function CreateNewPost() {
         toast.error('This is an error');
       } else {
         setContent('');
-        setResponseData(data);
+        // setResponseData(data);
         setIsNewPostCreated(true);
+        responseAllData.unshift(data);
+        setResponseAllData([...responseAllData]);
       }
     });
   };
@@ -54,7 +57,11 @@ export default function CreateNewPost() {
           </form>
         </div>
       </div>
-      {isNewPostCreated ? <PostCard post={responseData}></PostCard> : ''}
+      {isNewPostCreated
+        ? responseAllData.map((responseData) => (
+            <PostCard post={responseData}></PostCard>
+          ))
+        : ''}
     </>
   );
 }

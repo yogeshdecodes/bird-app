@@ -4,9 +4,9 @@ import * as Yup from 'yup';
 import { isAuthenticated, signup } from '../helper/auth/index';
 
 import MyTextInput from '../components/form/MyTextInput';
-import SocialLogin from '../components/form/SocialLogin/SocialLogin';
+import SocialLogin from '../components/form/SocialLogin';
 import { toast } from 'react-toastify';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
 const RegisterScreen: React.FC = () => {
   const history = useHistory();
@@ -26,8 +26,8 @@ const RegisterScreen: React.FC = () => {
       <Row className="justify-content-md-center" style={{ height: '100vh' }}>
         <Col xs={12} lg={5}>
           <Image
-            src="/images/twitter.svg"
-            style={{ width: '10%', marginTop: 30, marginBottom: 30 }}
+            src="/images/twitter.png"
+            style={{ width: '7%', marginTop: 30, marginBottom: 30 }}
           />
           <h2>Create your account</h2>
           <Formik
@@ -153,7 +153,13 @@ const RegisterScreen: React.FC = () => {
                 >
                   {isSubmitting ? <Spinner animation="border" /> : 'Register'}
                 </Button>
-
+                <hr className="my-4" />
+                <Link
+                  className="d-block text-center mt-2 small authLink"
+                  to="/login"
+                >
+                  Already have an account? Sign In
+                </Link>
                 <p className="text-center " style={{ marginTop: 10 }}>
                   <span>OR</span>
                 </p>

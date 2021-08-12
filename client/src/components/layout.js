@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, Redirect } from 'react-router-dom';
+import { signout } from '../helper/auth/index';
+import { toast } from 'react-toastify';
 
 const Layout = ({ title, children }) => {
   return (
@@ -46,13 +48,20 @@ const Layout = ({ title, children }) => {
           >
             <i className="fas fa-user"></i>
           </NavLink>
-          <NavLink
+          <Link
             activeStyle={{ color: '#1fa2f1' }}
-            to="/signout"
+            // to="/signout"
             className="mobileHide"
+            onClick={() => {
+              signout(() => {
+                toast.success('Successfully sign out');
+                <Redirect to="/login" />;
+                // history.push('/signin');
+              });
+            }}
           >
             <i className="fas fa-sign-out-alt"></i>
-          </NavLink>
+          </Link>
         </nav>
         <div className="mainSectionContainers col-12 col-sm-8 col-lg-5 ml-2">
           <div className="titleContainer">

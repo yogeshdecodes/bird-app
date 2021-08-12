@@ -17,7 +17,7 @@ const SocialLogin = () => {
         onClick={() => alert('You clicked google!')}
         style={{ width: '100%', marginTop: 10 }}
         type="button"
-        className="btn-block rounded-pill p-2  btn-danger"
+        className="btn-block rounded-pill p-2  btn-danger mb-5"
         block
       >
         <i className="fab fa-google" style={{ marginRight: 5 }}></i>

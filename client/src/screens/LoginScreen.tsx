@@ -3,10 +3,10 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Button, Col, Container, Image, Row, Spinner } from 'react-bootstrap';
 import { signin, isAuthenticated, authenticate } from '../helper/auth/index';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
 import MyTextInput from '../components/form/MyTextInput';
-import SocialLogin from '../components/form/SocialLogin/SocialLogin';
+import SocialLogin from '../components/form/SocialLogin';
 import { toast } from 'react-toastify';
 
 const LoginScreen: React.FC = () => {
@@ -28,8 +28,8 @@ const LoginScreen: React.FC = () => {
         <Row className="justify-content-md-center" style={{ height: '100vh' }}>
           <Col xs={12} lg={5}>
             <Image
-              src="/images/twitter.svg"
-              style={{ width: '10%', marginTop: 30, marginBottom: 30 }}
+              src="/images/twitter.png"
+              style={{ width: '7%', marginTop: 30, marginBottom: 30 }}
             />
             <h2>Log in to Twitter</h2>
             <Formik
@@ -93,7 +93,13 @@ const LoginScreen: React.FC = () => {
                   >
                     {isSubmitting ? <Spinner animation="border" /> : 'Login'}
                   </Button>
-
+                  <hr className="my-4" />
+                  <Link
+                    className="d-block text-center mt-2 small authLink"
+                    to="/register"
+                  >
+                    Don't have an account? Sign Up
+                  </Link>
                   <p className="text-center " style={{ marginTop: 10 }}>
                     <span>OR</span>
                   </p>
